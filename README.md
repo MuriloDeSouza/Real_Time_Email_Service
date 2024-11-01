@@ -6,7 +6,7 @@
 
 Title: CHAT em tempo real com NodeJs e WebSockets
 
-URL: [YouTube.com/](https://youtu.be/GHYnxoMC2cE)
+URL: [YouTube.com/](https://youtu.be/RisC86HOeFE)
 
 &emsp; O objetivo deste projeto é criar uma aplicação de chat com funcionalidades de persistência de mensagens, onde cada usuário pode ver o histórico de conversas ao se reconectar. O sistema utiliza o Socket.IO para comunicação em tempo real entre clientes e o backend, e um banco de dados SQLite para armazenar o histórico das mensagens.
 Tecnologias Usadas
