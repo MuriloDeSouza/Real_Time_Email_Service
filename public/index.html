@@ -19,10 +19,10 @@
 		}
 		#chat {
 				background-color: #202024;
-				border-radius: 8px;
-				padding: 20px;
+				border-radius: 10px;
+				padding: 30px;
 				width: 100%;
-				max-width: 600px;
+				max-width: 800px;
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 		}
 		ul {
@@ -81,12 +81,15 @@
 		}
 	</style>
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="/frontend/static/js/"></script>
 </head>
 <body>
 		<div id="chat">
 			<h1>Chat em tempo real.</h1>
 			<ul id="messages"></ul>
 			<form id="form" action="">
+                    <!-- <input id="nome" autocomplete="off" placeholder="Digite o seu nome..." />
+                    <input id="pessoa" autocomplete="off" placeholder="Digite para quem vc quer mandar a mensagem..." /> -->
 					<input id="message" autocomplete="off" placeholder="Digite sua mensagem..." /> 
 					<button type="submit">Enviar</button>
 			</form>
@@ -95,6 +98,8 @@
 				const socket = io();
 				
 				const form = document.getElementById('form');
+                // const nomeInput = document.getElementById('nome');
+                // const pessoaInput = document.getElementById('pessoa');
 				const messageInput = document.getElementById('message');
 				const messages = document.getElementById('messages');
 				
@@ -110,6 +115,8 @@
 				const item = document.createElement('li');
 				item.textContent = msg;
 				messages.appendChild(item);
+                // pessoaInput.appendChild(item);
+                // nomeInput.appendChild(item);
 				window.scrollTo(0, document.body.scrollHeight);
 		});
 		</script>
