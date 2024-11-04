@@ -23,6 +23,8 @@ const db = new sqlite3.Database('./chat.db', (err) => {
     }
 });
 
+const ADMIN_PASSWORD = 'apagar123';
+
 app.use(express.static('public'));
 
 // Quando um usuário se conecta, envia o histórico de mensagens
@@ -52,6 +54,26 @@ io.on('connection', (socket) => {
             }
         });
     });
+
+    //limpar o histórico de mensagens com o botão
+    socket.on('clear history', (password, calback) => {
+        if(password === ADMIN_PASSWORD){
+            db.run(`DELETE FROM messages`, (err) => {
+                if (err) {
+                    console.error("Erro ao limpar o histórico de mensagens:", err.message);
+                    calback(false);
+                } else {
+                    // Envia a mensagem para todos os usuários conectados
+                    console.log('Histórico de mensagens apagado');
+                    io.emit('chat clear');
+                    calback(true);
+                }
+            });
+        }else{
+            calback(false); // senha incorreta vai tentar novamente
+        }
+    });
+        
     
     socket.on('disconnect', () => {
         console.log('Usuário desconectado');
