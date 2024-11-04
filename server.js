@@ -44,13 +44,20 @@ io.on('connection', (socket) => {
     // Salva a nova mensagem e retransmite para todos os clientes
     socket.on('chat message', (data) => {
         // Insere a nova mensagem no banco de dados
-        const { name, message } = data;
+        const { name, message} = data;
+        //aqui no timestamp eu to utilizando para plotar as mensagens com a data e horário
         db.run(`INSERT INTO messages (name, message) VALUES (?, ?)`, [name, message], (err) => {
             if (err) {
                 console.error("Erro ao salvar a mensagem:", err.message);
             } else {
-                // Envia a mensagem para todos os usuários conectados
-                io.emit('chat message', data);
+                // Recupera a última mensagem inserida para incluir o timestamp ao emití-la
+                db.get("SELECT name, message, timestamp FROM messages ORDER BY id DESC LIMIT 1", (err, row) => {
+                    if (err) {
+                        console.error("Erro ao recuperar a última mensagem:", err.message);
+                    } else {
+                        io.emit('chat message', row);
+                    }
+                });
             }
         });
     });

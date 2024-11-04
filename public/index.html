@@ -106,9 +106,9 @@
 				const clearBtn = document.getElementById('clear-btn');
 
 				// Função para adicionar uma mensagem ao chat
-				function addMessage(name, message) {
+				function addMessage(name, message, timestamp) {
 					const item = document.createElement('li');
-					item.textContent = `${name}: ${message}`;
+					item.textContent = `${name} -  ${message}: ${timestamp}`;
 					messages.appendChild(item);
 				}
 
@@ -117,7 +117,7 @@
 		socket.on('chat history', (history) => {
 					if (!historyLoaded) {
 						history.forEach((data) => {
-							addMessage(data.name, data.message);
+							addMessage(data.timestamp, data.name, data.message);
 						});
 						historyLoaded = true;  // Marcar que o histórico foi carregado
 					}
@@ -133,8 +133,8 @@
 
 		// Receber uma nova mensagem do servidor
 		socket.on('chat message', function(data) {
-					addMessage(data.name, data.message);
-					window.scrollTo(0, document.body.scrollHeight);
+			addMessage(data.timestamp, data.name, data.message);
+			window.scrollTo(0, document.body.scrollHeight);
 		});
 
 		// disparar a mensagem para apagar o chat
