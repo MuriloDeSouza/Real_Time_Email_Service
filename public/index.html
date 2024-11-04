@@ -89,6 +89,7 @@
 			<form id="form" action="">
 					<input id="message" autocomplete="off" placeholder="Digite sua mensagem..." /> 
 					<button type="submit">Enviar</button>
+					<button id="clear-btn", type="click" style="background-color: #E53E3E">Apagar Histórico</button>
 			</form>
 		</div>
 		<script>
@@ -102,6 +103,7 @@
 				const form = document.getElementById('form');
 				const messageInput = document.getElementById('message');
 				const messages = document.getElementById('messages');
+				const clearBtn = document.getElementById('clear-btn');
 
 				// Função para adicionar uma mensagem ao chat
 				function addMessage(name, message) {
@@ -136,11 +138,12 @@
 		});
 
 		// disparar a mensagem para apagar o chat
-		clerBtn.addEventListener('click', function() {
+		clearBtn.addEventListener('click', function() {
 			const password = prompt("Digite a senha para apagar o chat:");
-			socker.emit('clear history', password, (success) => {
+			socket.emit('clear history', password, (success) => {
 				if (success) {
 					alert("Histórico de mensagens limpo com sucesso.");
+					location.reload()//parte para dar um reload na página	
 				} else {
 					alert('Senha incorreta!', ' Tente novamente.');
 				}
