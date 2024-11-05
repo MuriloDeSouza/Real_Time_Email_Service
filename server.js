@@ -91,15 +91,15 @@ io.on('connection', (socket) => {
     });
 });
 
-// const PORT = process.env.PORT || 3000;
-// server.listen(PORT, () => {
-//     console.log(`Servidor rodando na porta ${PORT}`);
-// });
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
 
 // server.listen(3000, () => {
 //     console.log('Servidor rodando em http://localhost:3000');
 // });
 
-server.listen(9001, () => {
-    console.log('Servidor rodando em https://real-time-msg-service.vercel.app');
-});
+// server.listen(9001, () => {
+//     console.log('Servidor rodando em https://real-time-msg-service.vercel.app/9001');
+// });
