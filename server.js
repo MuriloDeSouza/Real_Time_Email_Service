@@ -25,6 +25,10 @@ const db = new sqlite3.Database('./chat.db', (err) => {
 
 const ADMIN_PASSWORD = 'apagar123';
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
+
 app.use(express.static('public'));
 
 // Quando um usuário se conecta, envia o histórico de mensagens
