@@ -96,6 +96,10 @@ io.on('connection', (socket) => {
 //     console.log(`Servidor rodando na porta ${PORT}`);
 // });
 
-server.listen(3000, () => {
-    console.log('Servidor rodando em http://localhost:3000');
+// server.listen(3000, () => {
+//     console.log('Servidor rodando em http://localhost:3000');
+// });
+
+server.listen(9001, () => {
+    console.log('Servidor rodando em https://real-time-msg-service.vercel.app');
 });
