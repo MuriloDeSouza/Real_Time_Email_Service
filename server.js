@@ -25,9 +25,9 @@ const db = new sqlite3.Database('./chat.db', (err) => {
 
 const ADMIN_PASSWORD = 'apagar123';
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
-});
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + "/public/index.html");
+// });
 
 app.use(express.static('public'));
 
@@ -91,11 +91,11 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
-
-// server.listen(3000, () => {
-//     console.log('Servidor rodando em http://localhost:3000');
+// const PORT = process.env.PORT || 3000;
+// server.listen(PORT, () => {
+//     console.log(`Servidor rodando na porta ${PORT}`);
 // });
+
+server.listen(3000, () => {
+    console.log('Servidor rodando em http://localhost:3000');
+});
