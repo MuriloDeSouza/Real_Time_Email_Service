@@ -10,7 +10,7 @@
   "description": "Criação de uma aplicação utilizando o web-socket para enviar e-mails.",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "20.x"
   },
   "scripts": {
     "start": "node server.js"
